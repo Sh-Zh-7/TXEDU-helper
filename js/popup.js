@@ -1,155 +1,110 @@
-(function(){
-  // 全局变量
-  var body = document.body;
-  var div_whole;
+var bg = chrome.extension.getBackgroundPage();  // background的windows对象
+var body = document.body;                       // popup.html的body节点对象
+var div_whole;                                  // 待动态添加的div节点
+
+$("#fileUploader").on("change", function() {
+  var show_file_path = $("#fileUploader").val();
+  var split_file_path = show_file_path.split("\\");
+  $("#location").val(split_file_path[split_file_path.length - 1]);
+});
+
+$("#location").on("click", function() {
+  $('#fileUploader').click();
+});
+
+$("#check").on("click", function() {
+  $('#fileUploader').click();
+})
+
+$("#compare").on("click", function() {
+  // 读取上传文件的字符串内容
+  var reader = new FileReader();
   var input_files = document.querySelector("#fileUploader");
-  var location = document.querySelector("#location");
-  var check = document.querySelector("#check");
-  var compare = document.querySelector("#compare");
-
-  var bg = chrome.extension.getBackgroundPage();
-
-  // 函数区域
-  function createNode(htmlStr) {
-	  var div = document.createElement("div");
-    div.innerHTML = htmlStr;
-    return div.childNodes[0];
+  // 判断是否有选择文件
+  if (input_files.files[0]) {
+    reader.readAsText(input_files.files[0], "UTF-8");
+    reader.onload = function(e) {
+      var file_content = e.target.result;
+      var target_name_array = csvToArray(file_content);
+      // 得到的名单发送给content_script
+      // 获得background计算出来的缺勤名单并输出
+      sendMessageToContentScript(target_name_array, (response) => {
+        console.log(response);
+        var list_array = bg.returnNameList();
+        createLastElements(getFormatNames(list_array[0]), getFormatNames(list_array[1]));
+      });
+    }
+  } else {
+    alert("请选择您的文件！！");
   }
+});
+
+// 创造出缺勤名单的节点
+function createLastElements(name_in_class, name_in_course) {
+  // 判断当前页面是否存在节点了
+  if (div_whole) {
+    body.removeChild(div_whole);
+  }
+  div_whole = document.createElement("div");
+  div_whole.appendChild(document.createElement("hr"));
+  div_whole.style = "display: inline-block;";
   
-  function createLastElements(name_in_class, name_in_course) {
-    if (div_whole) {
-      body.removeChild(div_whole);
-    }
-    div_whole = document.createElement("div");
-    div_whole.appendChild(document.createElement("hr"));
-    div_whole.style = "display: inline-block;";
-    
-    // 左侧的文本框区域
-    var div_left = document.createElement("div");
-    div_left.className = "div_of_list";
-    div_left.style = "float:left;";
-    var p_left =document.createElement("p");
-    p_left.className = "p_of_list";
-    p_left.innerText = "未在选课名单中的："
-    var text_left = document.createElement("textarea");
-    text_left.classList.add("textarea_of_list");
-    text_left.classList.add("form-control");
-    text_left.style = "height: 160px";
-    text_left.textContent = name_in_course;
-    text_left.readOnly = true;
-    div_left.appendChild(p_left);
-    div_left.appendChild(text_left);
-    // 右侧的文本框区域
-    var div_right = document.createElement("div");
-    div_right.className = "div_of_list";
-    div_right.style = "float:right;";
-    var p_right = document.createElement("p");
-    p_right.className = "p_of_list";
-    p_right.innerText = "未在上课名单中的: "
-    var text_right = document.createElement("textarea");
-    text_right.classList.add("form-control");
-    text_right.classList.add("textarea_of_list");
-    text_right.style = "height: 160px";
-    text_right.textContent = name_in_class;
-    text_right.readOnly = true;
-    div_right.appendChild(p_right);
-    div_right.appendChild(text_right);
+  // 左侧的文本框区域
+  var div_left = createDiv("div_of_list", "float:left");
+  var p_left = createP("p_of_list", "未在选课名单中的");
+  text_left = createTextArea(name_in_course);
+  div_left.appendChild(p_left);
+  div_left.appendChild(text_left);
+  // 右侧的文本框区域
+  var div_right = createDiv("div_of_list", "float:right");
+  var p_right = createP("p_of_list", "未在上课名单中的：");
+  text_right = createTextArea(name_in_class);
+  div_right.appendChild(p_right);
+  div_right.appendChild(text_right);
+  // 底部提示的字符串
+  var notify = "<p class=\"notify\">\
+  <span style=\"font-weight: bold;\">\
+  温馨提示:\
+  </span>\
+  昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对\
+  </p>";
+  var notify_element = createNode(notify);
 
-    // 最后温馨提示的dom字符串
-    var notify = "<p class=\"notify\">\
-    <span style=\"font-weight: bold;\">\
-    温馨提示:\
-    </span>\
-    昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对\
-    </p>";
-    var notify_element = createNode(notify);
+  // 添加进DOM
+  div_whole.appendChild(div_left);
+  div_whole.appendChild(div_right);
+  body.appendChild(div_whole);
+  div_whole.appendChild(notify_element);
+}
 
-    // 添加进DOM
-    div_whole.appendChild(div_left);
-    div_whole.appendChild(div_right);
-    body.appendChild(div_whole);
-    div_whole.appendChild(notify_element);
+function createTextArea(content) {
+  // 设置各种必要的属性
+  var text_area = document.createElement("textarea");
+  text_area.classList.add("form-control");
+  text_area.classList.add("textarea_of_list");
+  text_area.style = "height: 160px";
+  text_area.textContent = content;
+  text_area.readOnly = true;
+  return text_area;
+}
+
+function updateTextArea(contents) {
+  var text_area_list = document.querySelectorAll("textarea");
+  for (let i = 0; i < text_area_list.length; ++i) {
+    text_area_list[i].textContent = contents[i];
   }
+}
 
-  function csvToArray(csv_str){
-    var csv_arry = csv_str.split("\r\n");
-    var datas = [];
-    for(let i = 0; i < csv_arry.length; ++i) {
-      // var data = [];
-      var temp = csv_arry[i].split(",");
-      for (let j = 0; j < temp.length; ++j) {
-        var target = temp[j].trim();
-        // 处理每一行末尾的逗号
-        if (target != "") {
-          datas.push(target);
-        }
-      }
-      // datas.push(data);
-    }
-    return datas;
-  }
+function createP(classname, content) {
+  var p =document.createElement("p");
+  p.className = classname;
+  p.innerText = content;
+  return p;
+}
 
-  function getFormatNames(name_list) {
-    var result = "";
-    for (let i = 0; i < name_list.length; ++i) {
-      if (i != name_list.length - 1) {
-        result += (name_list[i] + "\n");
-      } else {
-        result += name_list[i];
-      }
-    }
-    return result;
-  }
-
-  // 获取当前选项卡ID
-  function getCurrentTabId(callback) {
-	  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-	  	if(callback) callback(tabs.length? tabs[0].id: null);
-  	});
-  }
-
-  function sendMessageToContentScript(message, callback) {
-	  getCurrentTabId((tabId) => {
-		  chrome.tabs.sendMessage(tabId, message, function(response) {
-		  	if(callback) callback(response);
-	  	});
-  	});
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////////////
-  // 给各个元素绑定相应的事件
-  input_files.onchange = function() {
-    var show_file_path = $("#fileUploader").val();
-    var split_file_path = show_file_path.split("\\");
-    $("#location").val(split_file_path[split_file_path.length - 1]);
-  };
-
-  location.onclick = function() {
-    $('#fileUploader').click();
-  };
-
-  check.onclick = function() {
-    $('#fileUploader').click();
-  };
-
-  compare.onclick = function() {
-    // createLastElements();
-    var reader = new FileReader();
-    if (input_files.files[0]) {
-      reader.readAsText(input_files.files[0], "UTF-8");
-      reader.onload = function(e) {
-        var file_content = e.target.result;
-        var target_name_array = csvToArray(file_content);
-        // 得到的名单发送给content_script
-        sendMessageToContentScript(target_name_array, (response) => {
-          console.log(response);
-          var list_array = bg.returnNameList();
-          createLastElements(getFormatNames(list_array[0]), getFormatNames(list_array[1]));
-        });
-      }
-    } else {
-      alert("请选择您的文件！！");
-    }
-
-  }
-})()
+function createDiv(className, style) {
+  var div = document.createElement("div");
+  div.className = className;
+  div.style = style;
+  return div;
+}

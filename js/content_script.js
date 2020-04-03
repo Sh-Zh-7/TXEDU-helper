@@ -1,13 +1,3 @@
-
-// (function(){
-//   // 创建一个所有人员的名单
-//   var names_element = document.getElementsByClassName("member-item-inner-fullline");
-//   var names = new Array();
-//   for (let i = 0; i < names_element.length; ++i) {
-//     names[i] = names_element[i].innerText;
-//   }
-// })();
-
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   // 创建一个所有人员的名单
   var names_element = document.getElementsByClassName("member-item-inner-fullline");
