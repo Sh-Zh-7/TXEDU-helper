@@ -119,7 +119,9 @@
   ///////////////////////////////////////////////////////////////////////////////////////
   // 给各个元素绑定相应的事件
   input_files.onchange = function() {
-    $("#location").val($("#fileUploader").val());
+    var show_file_path = $("#fileUploader").val();
+    var split_file_path = show_file_path.split("\\");
+    $("#location").val(split_file_path[split_file_path.length - 1]);
   };
 
   location.onclick = function() {
