@@ -1,6 +1,7 @@
 (function(){
   // 全局变量
   var body = document.body;
+  var div_whole;
   var input_files = document.querySelector("#fileUploader");
   var location = document.querySelector("#location");
   var check = document.querySelector("#check");
@@ -16,8 +17,11 @@
   }
   
   function createLastElements(name_in_class, name_in_course) {
-    body.appendChild(document.createElement("hr"));
-    var div_whole = document.createElement("div");
+    if (div_whole) {
+      body.removeChild(div_whole);
+    }
+    div_whole = document.createElement("div");
+    div_whole.appendChild(document.createElement("hr"));
     div_whole.style = "display: inline-block;";
     
     // 左侧的文本框区域
@@ -50,10 +54,6 @@
     text_right.readOnly = true;
     div_right.appendChild(p_right);
     div_right.appendChild(text_right);
-    // 添加进DOM
-    div_whole.appendChild(div_left);
-    div_whole.appendChild(div_right);
-    body.appendChild(div_whole);
 
     // 最后温馨提示的dom字符串
     var notify = "<p class=\"notify\">\
@@ -63,7 +63,12 @@
     昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对\
     </p>";
     var notify_element = createNode(notify);
-    body.appendChild(notify_element);
+
+    // 添加进DOM
+    div_whole.appendChild(div_left);
+    div_whole.appendChild(div_right);
+    body.appendChild(div_whole);
+    div_whole.appendChild(notify_element);
   }
 
   function csvToArray(csv_str){
