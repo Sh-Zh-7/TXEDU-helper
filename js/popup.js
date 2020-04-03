@@ -30,6 +30,7 @@
     var text_left = document.createElement("textarea");
     text_left.classList.add("textarea_of_list");
     text_left.classList.add("form-control");
+    text_left.style = "height: 160px";
     text_left.textContent = name_in_course;
     text_left.readOnly = true;
     div_left.appendChild(p_left);
@@ -42,8 +43,9 @@
     p_right.className = "p_of_list";
     p_right.innerText = "未在上课名单中的: "
     var text_right = document.createElement("textarea");
-    text_right.classList.add("textarea_of_list");
     text_right.classList.add("form-control");
+    text_right.classList.add("textarea_of_list");
+    text_right.style = "height: 160px";
     text_right.textContent = name_in_class;
     text_right.readOnly = true;
     div_right.appendChild(p_right);
