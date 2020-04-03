@@ -19,6 +19,7 @@
     body.appendChild(document.createElement("hr"));
     var div_whole = document.createElement("div");
     div_whole.style = "display: inline-block;";
+    
     // 左侧的文本框区域
     var div_left = document.createElement("div");
     div_left.className = "div_of_list";
@@ -81,6 +82,18 @@
     return datas;
   }
 
+  function getFormatNames(name_list) {
+    var result = "";
+    for (let i = 0; i < name_list.length; ++i) {
+      if (i != name_list.length - 1) {
+        result += (name_list[i] + "\n");
+      } else {
+        result += name_list[i];
+      }
+    }
+    return result;
+  }
+
   // 获取当前选项卡ID
   function getCurrentTabId(callback) {
 	  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -113,16 +126,21 @@
   compare.onclick = function() {
     // createLastElements();
     var reader = new FileReader();
-    reader.readAsText(input_files.files[0], "UTF-8");
-    reader.onload = function(e) {
-      var file_content = e.target.result;
-      var target_name_array = csvToArray(file_content);
-      // 得到的名单发送给content_script
-      sendMessageToContentScript(target_name_array, (response) => {
-        console.log(response);
-        var list_array = bg.returnNameList();
-        createLastElements(list_array[0], list_array[1]);
-      });
+    if (input_files.files[0]) {
+      reader.readAsText(input_files.files[0], "UTF-8");
+      reader.onload = function(e) {
+        var file_content = e.target.result;
+        var target_name_array = csvToArray(file_content);
+        // 得到的名单发送给content_script
+        sendMessageToContentScript(target_name_array, (response) => {
+          console.log(response);
+          var list_array = bg.returnNameList();
+          createLastElements(getFormatNames(list_array[0]), getFormatNames(list_array[1]));
+        });
+      }
+    } else {
+      alert("请选择您的文件！！");
     }
+
   }
 })()
