@@ -10,6 +10,7 @@
   },
   "permissions": [
     "contextMenus",
+    "declarativeContent",
     "tabs",
     "notifications",
     "webRequest",
@@ -23,11 +24,13 @@
     "matches": ["https://ke.qq.com/webcourse/*"],
     "js": ["js/load.js"]
   }],
-
   "browser_action": 
 	{
 		"default_icon": "img/icon.png",
 		"default_title": "导入学生名单，查看到勤情况吧",
 		"default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["js/background.js"]
   }
 }
