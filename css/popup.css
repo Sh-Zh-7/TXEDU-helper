@@ -1,7 +1,6 @@
 body {
   width: 400px;
   padding: 20px;
-
   background-color: #FFFAF0;
 }
 header {
@@ -20,15 +19,18 @@ header {
 }
 .p_of_list {
   margin-bottom: 5px;
-  margin-left: 17px;
+  margin-left: 25px;
   font-size: 13px; 
 }
 .textarea_of_list {
   width: 150px;
   height: 125px;
   resize: none;
+  margin-left: 5px;
+  margin-right: 15px;
 }
 .notify {
+  margin-bottom: 0;
   font-size: 13px;
   color: gray; 
 }
