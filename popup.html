@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/popup.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- 标题部分 -->
+      <header>
+        <h4 class="title">腾讯课堂签到助手</h4>
+      </header>
+      <hr/>
+      <!-- 上传名单部分 -->
+      <main>
+        <div class="form-group">
+          <label>
+            请选择一份
+            <span class="emphasized_font">只包含学生姓名</span> 
+            的csv文件
+          </label>
+          <!-- 利用button关联fileinput -->
+          <div class="input-group">
+            <input id='location' class="form-control">
+                <label class="input-group-btn">
+                    <input type="button" id="check" value="浏览文件" class="btn btn-primary">
+                </label>
+            </div>
+          <input type="file" name="file" id='fileUploader' accept=".csv" style="display: none">
+       </div>
+      </main>     
+      <!-- 比对部分 -->
+      <div style="text-align: center;">
+        <input name="compare" id="compare" class="btn btn-success" type="button" value="查看到勤情况">
+      </div>
+      <!-- 显示名单部分 -->
+      <hr/>
+      <div name="list-show" style="display: inline-block;">
+        <div class="div_of_list" style="float: left;">
+          <p class="p_of_list">未在选课名单中的:</p>
+          <textarea class="textarea_of_list" class="form-control" readonly>
+            沈之豪
+            sfh
+            safasdf
+          </textarea>
+        </div>
+        <div class="div_of_list" style="float: right;">
+          <p class="p_of_list">未在上课名单中的:</p>
+          <textarea class="textarea_of_list" class="form-control"  readonly>
+            sdfsaddf
+            afdasdf
+            546asdf
+          </textarea>
+        </div>
+      </div>
+      <p class="notify">
+        <span style="font-weight: bold;">温馨提示:</span> 
+        昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对</p>
+    </div>
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="js/popup.js"></script>
+  </body>
+</html>

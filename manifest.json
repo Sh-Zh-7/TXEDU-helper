@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "腾讯课堂签到助手",
+  "version": "1.0.0",
+  "description": "帮助老师和课代表查看签到情况的Chrome扩展",
+  "icons": {
+    "16": "img/icon.png",
+    "48": "img/icon.png",
+    "128": "img/icon.png"
+  },
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "http://*/*",
+    "https://*/*"
+  ],
+
+  "content_scripts": [ {
+    "matches": ["https://ke.qq.com/webcourse/*"],
+    "js": ["js/load.js"]
+  }],
+
+  "browser_action": 
+	{
+		"default_icon": "img/icon.png",
+		"default_title": "导入学生名单，查看到勤情况吧",
+		"default_popup": "popup.html"
+  }
+}
