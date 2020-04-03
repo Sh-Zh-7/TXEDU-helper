@@ -62,11 +62,12 @@ function createLastElements(name_in_class, name_in_course) {
   div_right.appendChild(p_right);
   div_right.appendChild(text_right);
   // 底部提示的字符串
-  var notify = "<p class=\"notify\">\
-  <span style=\"font-weight: bold;\">\
-  温馨提示:\
-  </span>\
-  昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对\
+  var notify = "\
+  <p class=\"notify\">\
+    <span style=\"font-weight: bold;\">\
+      温馨提示:\
+    </span>\
+     昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对\
   </p>";
   var notify_element = createNode(notify);
 
@@ -77,34 +78,3 @@ function createLastElements(name_in_class, name_in_course) {
   div_whole.appendChild(notify_element);
 }
 
-function createTextArea(content) {
-  // 设置各种必要的属性
-  var text_area = document.createElement("textarea");
-  text_area.classList.add("form-control");
-  text_area.classList.add("textarea_of_list");
-  text_area.style = "height: 160px";
-  text_area.textContent = content;
-  text_area.readOnly = true;
-  return text_area;
-}
-
-function updateTextArea(contents) {
-  var text_area_list = document.querySelectorAll("textarea");
-  for (let i = 0; i < text_area_list.length; ++i) {
-    text_area_list[i].textContent = contents[i];
-  }
-}
-
-function createP(classname, content) {
-  var p =document.createElement("p");
-  p.className = classname;
-  p.innerText = content;
-  return p;
-}
-
-function createDiv(className, style) {
-  var div = document.createElement("div");
-  div.className = className;
-  div.style = style;
-  return div;
-}

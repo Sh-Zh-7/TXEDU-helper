@@ -25,9 +25,9 @@
           </label>
           <!-- 利用button关联fileinput -->
           <div class="input-group">
-            <input id='location' class="form-control">
+            <input id='location' class="form-control"/>
                 <label class="input-group-btn">
-                    <input type="button" id="check" value="浏览文件" class="btn btn-primary">
+                    <input type="button" id="check" value="浏览文件" class="btn btn-primary"/>
                 </label>
             </div>
           <input type="file" name="file" id='fileUploader' accept=".csv" style="display: none">
@@ -37,10 +37,12 @@
       <div style="text-align: center;">
         <input name="compare" id="compare" class="btn btn-success" type="button" value="查看到勤情况">
       </div>
+      <!-- 动态生成部分 -->
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/popper.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
     <script src="js/popup.js"></script>
   </body>
 </html>
