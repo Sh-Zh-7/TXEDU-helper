@@ -21,7 +21,7 @@ chrome.runtime.onInstalled.addListener(function(){
 			{
 				conditions: [
 					// 只有特定网页才显示pageAction
-					new chrome.declarativeContent.PageStateMatcher({pageUrl: {urlContains: 'baidu.com'}})
+					new chrome.declarativeContent.PageStateMatcher({pageUrl: {urlContains: "https://ke.qq.com/webcourse/"}})
 				],
 				actions: [new chrome.declarativeContent.ShowPageAction()]
 			}

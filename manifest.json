@@ -24,7 +24,7 @@
     "matches": ["https://ke.qq.com/webcourse/*"],
     "js": ["js/content_script.js"]
   }],
-  "browser_action": 
+  "page_action": 
 	{
 		"default_icon": "img/icon.png",
 		"default_title": "导入学生名单，查看到勤情况吧",
