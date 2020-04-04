@@ -1,0 +1,446 @@
+/* 这个部分是用来设置版心的宽度 
+   这一个也算得上是公共样式了
+*/
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?qdvp33');
+  src:  url('../fonts/icomoon.eot?qdvp33#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?qdvp33') format('truetype'),
+    url('../fonts/icomoon.woff?qdvp33') format('woff'),
+    url('../fonts/icomoon.svg?qdvp33#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+
+body {
+  background-color: #f6f6f6;
+}
+
+.w {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+/* 由于ul内置的格式实在是太丑了,所以我们得在全局样式中删除ul的样式
+* {
+  margin: 0px;
+  padding: 0px;
+} */
+
+ul {
+  list-style: none;
+}
+
+/* a原来的样式也很丑,因此也要重写 */
+a {
+  text-decoration: none;
+  color: #999;
+}
+
+/* 这个只是快速的一个样式罢了,这个可以直接写在我们的class中 */
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+header {
+  height: 80px;
+  /* background-color: #020000; */
+}
+
+nav {
+  height: 30px;
+  background-color: #e3e4e5;
+  border-bottom: 2px solid #f4f4f4;
+
+  font-size: 12px;
+  color: #999999; /*这个种类是不是不能被继承的.. */
+  line-height: 28px;
+}
+
+.address {
+  margin-left: 200px;
+}
+
+/* 利用矩形来模拟小竖线 */
+.space {
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+
+  margin: 10px 12px 10px;
+}
+
+.location {
+  color: #ee2c5d;
+}
+
+li > i {
+  font-family: "icomoon";
+  font-style: normal;
+}
+
+ul > li {
+  float: left;
+}
+
+.f10 {
+  color: #ee2c5d;
+}
+
+/* 如果一个元素有多个样式，那么要尤为注意相同样式的情况
+   同一个属性样式会被后面的样式给覆盖掉
+*/
+.middle {
+  height: 140px;
+  /* background-color: pink; */
+  position: relative;
+  /* 不知道为什么这里添加position:absolute会让margin居中的效果失效 */
+}
+
+.super {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.logo {
+  position: absolute;
+  left: 0px;
+}
+
+/* 这个子类选择器，必须要是直接子类 */
+.logo > h1 > a {
+  position: absolute;
+  top: -30px;
+
+  display: block;
+  /* 如果是标签引入背景元素的话，还要指定宽高 */
+  width: 190px;
+  height: 170px;
+  background: #fff url(../img/logo.png) no-repeat;
+  box-shadow: #ccc 5px 0px 3px;
+}
+
+.search {
+  position: absolute;
+  width: 550px;
+  height: 36px;
+  top: 25px;
+  left: 320px;
+}
+
+.search > input {
+  width: 495px;
+  height: 36px;
+  padding-left: 5px;
+  float: left;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+  border: none;
+  border: orangered solid 3px;
+}
+
+.search > .button {
+  width: 55px;
+  height: 36px;
+  float: left;
+
+  box-sizing: border-box;
+  background-color: orangered;
+  border: orangered solid 3px;
+}
+
+.search > .button > p {
+  font-family: "icomoon";
+  font-size: 15px;
+  color: #fff;
+  text-align: center;
+}
+
+.shopcar {
+  position: absolute;
+  width: 190px;
+  height: 36px;
+  top: 25px;
+  right: 95px;
+
+  font-size: 14px;
+  line-height: 34px;
+
+  border: rgb(224, 216, 216) solid 2px;
+  background-color: #fff;
+  /* 这个text-align:center竟然可以被子元素给继承！ */
+  text-align: center;
+}
+
+.shopcar > .shopcar_icon {
+  left: 3px;
+  font-family: "icomoon";
+  color: orangered;
+  text-align: center;
+  margin-right: -5px;
+}
+
+.shopcar > .shopcar_zero {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+
+  /* 给span包裹的字设置样式和位置 */
+  font-size: 13px;
+  line-height: 15px;
+  color: #fff;
+  background-color: orangered;
+}
+
+.shopcar > .shopcar_content {
+  margin-left: 15px;
+  height: 16px;
+  color: orangered;
+  /* text-align: center; */
+}
+
+.hotword {
+  position: absolute;
+  top: 72px;
+  left: 320px;
+  width: 447.6px;
+  height: 18.4px;
+  font-size: 12px;
+}
+
+.hotword > a:nth-of-type(1) {
+  color: orangered;
+}
+
+.hotword > a:hover {
+  color: orangered;
+}
+
+.item {
+  position: absolute;
+  display: inline-block;
+  left: 200px;
+  bottom: 10px;
+}
+
+/* 哎，这种标签很容易被全局的样式所影响 */
+.item > ul > li > a {
+  margin-left: 30px;
+  font-weight: 700; /*又到了爷最爱的加粗环节 */
+  font-size: 16px;
+  color: #555;
+}
+
+.item > ul > li > a:hover {
+  color: orangered
+}
+
+.item > ul > .space {
+  display: inline-block;
+  height: 18.4px;
+  margin: 0;
+  margin-left: 15px;
+  margin-right: -15px;
+  margin-bottom: 0;
+}
+
+footer {
+  margin-top: 40px;
+
+  width: 100%;
+  height: 500px;
+  background-color: #eaeaea;
+}
+
+footer > .underline {
+  height: 105px;
+  border-bottom: #e0e0e0 solid 2px;
+}
+
+footer > .underline > .w {
+  padding: 30px 0;
+}
+
+footer li {
+  position: relative;
+  width: 297px;
+  height: 43px;
+  float: left;
+}
+
+footer li p {
+  margin-left: 82px;
+  font-weight: 700;
+  line-height: 48px;
+  float: left;
+}
+
+footer li h5 {
+  height: 43px;
+  width: 36px;
+  margin-left: 36px;
+  position: absolute;
+  text-indent: -9999px;
+  background: url(../img/ico.png) no-repeat;
+}
+
+/* 在html标签中使用h5+图片的实现，增加了可读性 */
+footer li:nth-child(2) h5 {
+  background-position: 0px -43px;
+}
+
+footer li:nth-child(3) h5 {
+  background-position: 0px -86px;
+}
+
+footer li:nth-child(4) h5 {
+  background-position: 0px -129px;
+}
+
+footer > .end_middle {
+  height: 200px;
+  border-bottom: #e0e0e0 solid 2px;
+  box-sizing: border-box;
+}
+
+footer dl {
+  padding-top: 27.5px;
+  width: 240px;
+  height: 172.5px;
+  float: left;
+}
+
+footer dt {
+  height: 30px;
+  width: 192px;
+  font-size: 14px;
+  color: #666;
+}
+
+footer dd {
+  width: 192px;
+  height: 22px;
+}
+
+footer dd a {
+  font-size: 12px;
+  color: #666;
+}
+
+
+.fr .coverage {
+  width: 200px;
+  height: 150px;
+  background: url("../img/ico_footer.png") no-repeat;
+}
+
+.fr h5{
+  margin-left: 21px;
+  margin-top: 25px;
+  width: 200px;
+  height: 30px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* .fr p {
+  width: 180px;
+  height: 54px;
+  font-size: 12px;
+  color: #666;
+  line-height: 18px; /* 这个line-height属性是用来调整文字之间的间距的 */
+/*} */
+
+.end_middle .fr a {
+  margin-top: 10px;
+  font-size: 12px;
+  display: block;
+  text-align: right;
+}
+
+
+footer {
+  color: #666;
+}
+
+.about_us {
+  margin-top: 20px;
+  padding-left: 60px;
+}
+
+.about_us > .w > a {
+  color: #666;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.about_us > .w > span {
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.license {
+  margin-top: 20px;
+}
+
+.license p {
+  text-align: center;
+  font-size: 12px;
+}
+
+.license span {
+  display: inline-block;
+  margin: 4px 10px;
+}
+
+.license p:nth-child(3) {
+  margin-top: 4px;
+}
+
+.footer_icon {
+  margin-top: 25px;
+  height: 40px;
+  /* 我擦，text-align：center怎么对a元素也有用 */
+  text-align: center;
+}
+
+.footer_icon a {
+  /* block似乎会在新的一行生成，如果声明为inline-block，那么就会在同一行 */
+  display: inline-block;
+  width: 103px;
+  height: 33px;
+  background: url(../img/ico_footer.png) no-repeat;
+  background-position: 0 -150px;
+  margin-right: 10px;
+}
+
+.footer_icon a:nth-child(2) {
+  background-position: -103px -150px;
+}
+
+.footer_icon a:nth-child(3) {
+  background-position: 0 -183px;
+}
+
+.footer_icon a:nth-child(4) {
+  background-position: -103px -183px;
+}
+
+.footer_icon a:nth-child(5) {
+  background-position: 0 -216px;
+}
+
+.footer_icon a:nth-child(6) {
+  background-position: -103px -216px;
+}
