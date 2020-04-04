@@ -41,6 +41,7 @@ function getCurrentTabId(callback) {
     if(callback) callback(tabs.length? tabs[0].id: null);
   });
 }
+
 // 与content_script交互
 function sendMessageToContentScript(message, callback) {
   getCurrentTabId((tabId) => {
