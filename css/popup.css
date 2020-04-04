@@ -2,18 +2,20 @@ body {
   padding: 20px 20px 0 20px;
   width: 400px;
 
-  /* padding: 20px; */
   background-color: #FFFAF0;
-  border: 3px sold rgb(214, 191, 146);
-
-  box-sizing: border-box;
 }
 header {
   text-align: center;
 }
 .title {
   font-weight: bold;
+  margin-bottom: 0px;
 }
+.first_hr {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
 .emphasized_font {
   color: red;
   font-weight: bold;
@@ -40,9 +42,8 @@ header {
 }
 .notify {
   display: inline-block;
-  margin-left: 15px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin: 5px 0 10px 15px;
+  
   font-size: 13px;
   color: gray; 
 }

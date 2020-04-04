@@ -1,5 +1,3 @@
-// var bg = chrome.extension.getBackgroundPage();  // background的windows对象
-
 $("#fileUploader").on("change", function() {
   var show_file_path = $("#fileUploader").val();
   var split_file_path = show_file_path.split("\\");
@@ -39,8 +37,6 @@ $("#compare").on("click", function() {
 });
 
 function DisplayNameList(name_in_class, name_in_course) {
-  // var div_whole = document.querySelector("#div-whole");
-  // div_whole.style = "height: auto"; // 262.2px
   var current_height = $("#div-whole").height();
   var target_height = $("#div-whole").css("height", "auto").height() + "px";
   $("#div-whole").height(current_height).animate({height: target_height}, 300);
