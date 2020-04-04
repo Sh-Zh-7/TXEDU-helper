@@ -10,10 +10,13 @@
 
 - 首先点击右上角:star2: `Star`ʕ •ᴥ•ʔ
 - 下载扩展并安装
-  - 你可以直接`git clone git@github.com:Sh-Zh-7/TXEDU-helper.git`获得源代码，然后在chrome扩展里面加载整个文件夹。<img src="./asset/load1.png">
-  - 你也可以到该项目专门的`github`页面找[release](<https://github.com/Sh-Zh-7/TXEDU-helper/releases>), 找到最新最稳定的版本并下载，解压后直接拖入`chrome://extensions`里面就行了。<img src="asset/load2.png">
+  - 你可以直接`git clone git@github.com:Sh-Zh-7/TXEDU-helper.git`获得源代码，然后在chrome扩展里面加载整个文件夹。
+
+  <img src="./asset/load.png">
+
+  - 你也可以到该项目专门的`github`页面找[release](<https://github.com/Sh-Zh-7/TXEDU-helper/releases>), 找到最新最稳定的版本并下载，解压后直接拖入`chrome://extensions`里面就行了。
 - 进入相应页面，在chrome浏览器右上角点击扩展，弹出交互页面。
-- 上传只含学生姓名的csv文件，点击“查看签到情况按钮”， 就可以看到缺勤的名单了。<img src="asset/usage.png">
+- 上传只含学生姓名的csv文件，点击“查看签到情况按钮”， 就可以看到缺勤的名单了。<img src="asset/usage.png" style="margin: 0 auto;">
 
 ## FAQ
 
@@ -36,6 +39,11 @@
 **Q4：我既不是老师也不是课代表，如何体验你这款产品？**
 
 **A4：** 自己试着写出一份选课名单（只要包含姓名即可，既然是体验就没必要涉及所有的学生），然后按照说明操作就行了。
+
+## 特别感谢
+
+- 前端框架：[Bootstrap](https://getbootstrap.com/)
+- js库：[jQuery](https://jquery.com/)
 
 ## License
 
