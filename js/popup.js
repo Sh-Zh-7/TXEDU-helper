@@ -1,5 +1,4 @@
-var bg = chrome.extension.getBackgroundPage();  // background的windows对象
-var body = document.body;                       // popup.html的body节点对象
+// var bg = chrome.extension.getBackgroundPage();  // background的windows对象
 
 $("#fileUploader").on("change", function() {
   var show_file_path = $("#fileUploader").val();
@@ -29,6 +28,7 @@ $("#compare").on("click", function() {
       // 获得background计算出来的缺勤名单并输出
       sendMessageToContentScript(target_name_array, (response) => {
         console.log(response);
+        var bg = chrome.extension.getBackgroundPage();  // background的windows对象
         var list_array = bg.returnNameList();
         DisplayNameList(getFormatNames(list_array[0]), getFormatNames(list_array[1]));
       });
@@ -39,8 +39,11 @@ $("#compare").on("click", function() {
 });
 
 function DisplayNameList(name_in_class, name_in_course) {
-  var div_whole = document.querySelector("#div-whole");
-  div_whole.style = "height: auto";
+  // var div_whole = document.querySelector("#div-whole");
+  // div_whole.style = "height: auto"; // 262.2px
+  var current_height = $("#div-whole").height();
+  var target_height = $("#div-whole").css("height", "auto").height() + "px";
+  $("#div-whole").height(current_height).animate({height: target_height}, 300);
   updateTextArea([name_in_class, name_in_course]);
 }
 

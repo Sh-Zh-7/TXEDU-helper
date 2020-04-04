@@ -1,7 +1,12 @@
 body {
+  padding: 20px 20px 0 20px;
   width: 400px;
-  padding: 20px;
+
+  /* padding: 20px; */
   background-color: #FFFAF0;
+  border: 3px sold rgb(214, 191, 146);
+
+  box-sizing: border-box;
 }
 header {
   text-align: center;
@@ -37,7 +42,7 @@ header {
   display: inline-block;
   margin-left: 15px;
   margin-top: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   font-size: 13px;
   color: gray; 
 }
