@@ -50,6 +50,14 @@ function sendMessageToContentScript(message, callback) {
   });
 }
 
+function updateTextArea(contents) {
+  var text_area_list = document.querySelectorAll("textarea");
+  for (let i = 0; i < text_area_list.length; ++i) {
+    text_area_list[i].textContent = contents[i];
+  }
+}
+
+///////////////////////////////////////废弃，现以从动态生成节点变为修改父元素高度/////////////////////////////////
 function createTextArea(content) {
   // 设置各种必要的属性
   var text_area = document.createElement("textarea");
@@ -59,13 +67,6 @@ function createTextArea(content) {
   text_area.textContent = content;
   text_area.readOnly = true;
   return text_area;
-}
-
-function updateTextArea(contents) {
-  var text_area_list = document.querySelectorAll("textarea");
-  for (let i = 0; i < text_area_list.length; ++i) {
-    text_area_list[i].textContent = contents[i];
-  }
 }
 
 function createP(classname, content) {

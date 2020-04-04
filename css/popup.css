@@ -13,26 +13,31 @@ header {
   color: red;
   font-weight: bold;
 }
+
+.div_whole {
+  display: inline-block; 
+  height: 0;
+  overflow: hidden;
+}
+
 .div_of_list {
-  flex: 1;
-  margin: 5px 5px;
+  width: 150px;
 }
 .p_of_list {
   margin-bottom: 5px;
-  margin-left: 25px;
+  margin-left: 20px;
   font-size: 13px; 
 }
 .textarea_of_list {
-  width: 150px;
-  /* 这里的height不知道为什么无法起效 */
-  /* height: 300px; */
+  width: 140px;
   resize: none;
   margin-left: 5px;
-  margin-right: 15px;
 }
 .notify {
+  display: inline-block;
   margin-left: 15px;
-  margin-bottom: 0;
+  margin-top: 5px;
+  margin-bottom: 0px;
   font-size: 13px;
   color: gray; 
 }

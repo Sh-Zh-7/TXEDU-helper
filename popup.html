@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/popup.css">
   </head>
   <body>
+    
     <div class="container">
       <!-- 标题部分 -->
       <header>
@@ -23,7 +24,7 @@
             <span class="emphasized_font">只包含学生姓名</span> 
             的csv文件
           </label>
-          <!-- 利用button关联fileinput -->
+          <!-- 利用button关联file_uploader -->
           <div class="input-group">
             <input id='location' class="form-control"/>
                 <label class="input-group-btn">
@@ -33,11 +34,29 @@
           <input type="file" name="file" id='fileUploader' accept=".csv" style="display: none">
        </div>
       </main>     
-      <!-- 比对部分 -->
+      <!-- 对比按钮部分 -->
       <div style="text-align: center;">
         <input name="compare" id="compare" class="btn btn-success" type="button" value="查看到勤情况">
       </div>
       <!-- 动态生成部分 -->
+      <div id="div-whole" class="div_whole">
+        <hr/>
+        <div id="div-left" class="div_of_list" style="float:left;">
+          <p id="p-left" class="p_of_list">未在选课名单中的</p>
+          <textarea id="text-left" class="form-control textarea_of_list" style="height: 160px;" readonly></textarea>
+        </div>
+        <div id="div-right" class="div_of_list" style="float:right;">
+          <p id="p-right" class="p_of_list">未在选上课名单中的</p>
+          <textarea id="text-right" class="form-control textarea_of_list" style="height: 160px;" readonly></textarea>
+        </div>
+        <!-- 末尾的温馨提示 -->
+        <p class="notify">
+          <span style="font-weight: bold;">
+            温馨提示:
+          </span>
+           昵称和真名可能有对不上的情况，所以以上两个文本框中的内容请手动核对
+        </p>
+      </div>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/popper.min.js"></script>
