@@ -1,12 +1,13 @@
 body {
   padding: 20px 20px 0 20px;
   width: 400px;
-
   background-color: #FFFAF0;
 }
 header {
   text-align: center;
 }
+
+/* 其他部分的样式 */
 .title {
   font-weight: bold;
   margin-bottom: 0px;
@@ -15,18 +16,17 @@ header {
   margin-top: 0px;
   margin-bottom: 15px;
 }
-
 .emphasized_font {
   color: red;
   font-weight: bold;
 }
 
+/* 考勤名单对比 */
 .div_whole {
   display: inline-block; 
   height: 0;
   overflow: hidden;
 }
-
 .div_of_list {
   width: 150px;
 }
