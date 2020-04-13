@@ -13,7 +13,7 @@
 - 下载扩展并安装
   - 你可以直接`git clone git@github.com:Sh-Zh-7/TXEDU-helper.git`获得源代码，然后在chrome扩展里面加载整个文件夹。
 
-  <div align=center><img src="./asset/load.png" width="200px"></div>
+  <div align=center><img src="./asset/load.png"></div>
 
   - 你也可以到该项目专门的`github`页面找[release](<https://github.com/Sh-Zh-7/TXEDU-helper/releases>), 找到最新最稳定的版本并下载，解压后直接拖入`chrome://extensions`里面就行了。
 
@@ -21,7 +21,7 @@
 
 - 上传只含学生姓名的csv文件，点击“查看签到情况按钮”， 就可以看到缺勤的名单了。
 
-  <div align=center><img src="asset/usage.png" style="margin: 0 auto;"></div>
+  <div align=center><img src="asset/usage.png"></div>
 
 ## FAQ
 
