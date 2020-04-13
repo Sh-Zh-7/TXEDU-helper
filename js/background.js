@@ -1,12 +1,23 @@
 var name_in_class;
 var name_in_course;
 
+function findStr(arr, str) {
+  for (let i = 0; i < arr.length; ++i) {
+    var index = arr[i].indexOf(str);
+    if (index != -1) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 function deleteSame(arr1, arr2) {
-  for (let i = arr1.length - 1; i >= 0; --i) {
-    let index_arr2 = arr2.indexOf(arr1[i]);
-    if (index_arr2 > -1) {
-      arr1.splice(i, 1);
-      arr2.splice(index_arr2, 1);
+  for (let i = arr2.length - 1; i >= 0; --i) {
+    // let index_arr2 = arr2.indexOf(arr1[i]);
+    var index_arr1 = findStr(arr1, arr2[i]);
+    if (index_arr1 > -1) {
+      arr2.splice(i, 1);
+      arr1.splice(index_arr1, 1);
     }
   }
 } 
